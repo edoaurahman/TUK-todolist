@@ -19,6 +19,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   final _titleCtrl = TextEditingController();
   final _descCtrl = TextEditingController();
   DateTime _due = DateTime.now();
+  bool _saving = false;
 
   bool get _isPenting => widget.category == TaskCategory.penting;
   Color get _accent => _isPenting ? AppColors.penting : AppColors.biasa;
@@ -51,12 +52,14 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
   Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
+    setState(() => _saving = true);
     await Get.find<TaskController>().addTask(
       title: _titleCtrl.text,
       description: _descCtrl.text,
       dueDate: _due,
       category: widget.category,
     );
+    if (mounted) setState(() => _saving = false);
     Get.back();
     Get.snackbar(
       'Tersimpan',
@@ -142,8 +145,17 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             const SizedBox(height: 24),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: _accent),
-              onPressed: _save,
-              child: const Text('SIMPAN'),
+              onPressed: _saving ? null : _save,
+              child: _saving
+                  ? const SizedBox(
+                      height: 18,
+                      width: 18,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.white,
+                      ),
+                    )
+                  : const Text('SIMPAN'),
             ),
           ],
         ),
