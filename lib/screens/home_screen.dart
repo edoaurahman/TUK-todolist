@@ -263,8 +263,24 @@ class _ChartCard extends StatelessWidget {
                   borderData: FlBorderData(show: false),
                   gridData: const FlGridData(show: false),
                   titlesData: FlTitlesData(
-                    leftTitles: const AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
+                    leftTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 28,
+                        interval: 1,
+                        getTitlesWidget: (value, meta) {
+                          if (value == meta.max) {
+                            return const SizedBox.shrink();
+                          }
+                          return Text(
+                            value.toInt().toString(),
+                            style: const TextStyle(
+                              fontSize: 11,
+                              color: AppColors.textSubtle,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     rightTitles: const AxisTitles(
                       sideTitles: SideTitles(showTitles: false),
