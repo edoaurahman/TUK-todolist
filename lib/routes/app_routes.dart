@@ -5,6 +5,7 @@ import '../screens/add_task_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/login_screen.dart';
 import '../screens/settings_screen.dart';
+import '../screens/task_detail_screen.dart';
 import '../screens/task_list_screen.dart';
 
 abstract class AppRoutes {
@@ -13,6 +14,7 @@ abstract class AppRoutes {
   static const addPenting = '/add-penting';
   static const addBiasa = '/add-biasa';
   static const taskList = '/task-list';
+  static const taskDetail = '/task-detail';
   static const settings = '/settings';
 
   static final pages = <GetPage<dynamic>>[
@@ -27,6 +29,7 @@ abstract class AppRoutes {
       page: () => const AddTaskScreen(category: TaskCategory.biasa),
     ),
     GetPage(name: taskList, page: () => const TaskListScreen()),
+    GetPage(name: taskDetail, page: () => const TaskDetailScreen()),
     GetPage(name: settings, page: () => const SettingsScreen()),
   ];
 }

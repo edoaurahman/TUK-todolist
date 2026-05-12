@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../controllers/task_controller.dart';
 import '../models/task.dart';
+import '../routes/app_routes.dart';
 import '../theme/app_theme.dart';
 
 class TaskListScreen extends GetView<TaskController> {
@@ -127,7 +128,10 @@ class _TaskTile extends StatelessWidget {
                   ],
                 ),
               ),
-              Icon(Icons.play_arrow_rounded, color: accent, size: 28),
+              GestureDetector(
+                onTap: () => Get.toNamed(AppRoutes.taskDetail, arguments: task),
+                child: Icon(Icons.play_arrow_rounded, color: accent, size: 28),
+              ),
             ],
           ),
         ),
