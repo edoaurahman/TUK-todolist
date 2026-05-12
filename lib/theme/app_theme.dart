@@ -49,6 +49,7 @@ ThemeData buildAppTheme() {
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
       ),
+      hintStyle: const TextStyle(color: Color(0xFFB8C4C4)),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
